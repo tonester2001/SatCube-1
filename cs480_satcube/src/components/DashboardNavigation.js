@@ -64,3 +64,36 @@ const MainNavigation = () => {
 };
 
 export default MainNavigation;
+
+/* ANTHONY'S CODE/TELEMETRY API CREATION & CALL FOR RETRIEVAL */
+
+import React, { useState, useEffect } from "react";
+import { parse } from "csv-parse/lib/sync";
+
+function Telemetry() {
+  const [telemetryData, setTelemetryData] = useState([]);
+
+  useEffect(() => {
+    fetch("assets/telemetries/FOX1E_rttelemetry.csv")
+      .then((response) => response.text())
+      .then((text) => {
+        const data = parse(text);
+        setTelemetryData(data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  return (
+    <details>
+      <summary>
+        <strong>Telemetry API Call: FOX1E_rttelemetry</strong>
+      </summary>
+      {telemetryData.map((row, index) => (
+        <div key={index}>{row.join(",")}</div>
+      ))}
+    </details>
+  );
+}
+
+export default Telemetry;
+
