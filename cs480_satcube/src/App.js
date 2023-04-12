@@ -13,6 +13,7 @@ import UserLists from "./screens/UserLists";
 import DashboardRoot from "./screens/DashboardRoot";
 import Success from "./components/Success";
 import Cancel from "./components/Cancel";
+import Telemetries from "./components/Telemetries";
 
 function App() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
